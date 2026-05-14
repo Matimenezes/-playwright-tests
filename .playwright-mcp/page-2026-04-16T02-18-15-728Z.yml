@@ -1,0 +1,53 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - img "Buger Eats" [ref=e5]
+    - link "Voltar para home" [ref=e6] [cursor=pointer]:
+      - /url: /
+      - img [ref=e7]
+      - text: Voltar para home
+  - generic [ref=e9]:
+    - heading "Cadastre-se para fazer entregas" [level=1] [ref=e10]:
+      - text: Cadastre-se para
+      - text: fazer entregas
+    - group [ref=e11]:
+      - banner [ref=e12]:
+        - heading "Dados" [level=2] [ref=e13]
+      - generic [ref=e14]:
+        - textbox "Nome completo" [ref=e16]: Teste Nome
+        - textbox "CPF somente números" [ref=e18]: "12345678900"
+      - generic [ref=e19]:
+        - textbox "E-mail" [ref=e21]: teste@email.com
+        - textbox "Whatsapp" [ref=e23]: "11999999999"
+    - group [ref=e24]:
+      - banner [ref=e25]:
+        - heading "Endereço" [level=2] [ref=e26]
+        - generic [ref=e27]: Informe o cep, número e complemento
+      - generic [ref=e28]:
+        - textbox "CEP" [ref=e30]: "06417030"
+        - button "Buscar CEP" [ref=e32]
+      - textbox "Rua" [disabled] [ref=e34]: Rua Tupi
+      - generic [ref=e35]:
+        - textbox "Número" [ref=e37]: "123"
+        - textbox "Complemento" [ref=e39]
+      - generic [ref=e40]:
+        - textbox "Bairro" [disabled] [ref=e42]: Vila São Silvestre
+        - textbox "Cidade/UF" [disabled] [ref=e44]: Barueri/SP
+    - group [ref=e45]:
+      - banner [ref=e46]:
+        - heading "Método de entrega" [level=2] [ref=e47]
+        - generic [ref=e48]: "Escolha um dos métodos abaixo:"
+      - list [ref=e49]:
+        - listitem [ref=e50]:
+          - img "Moto" [ref=e51]
+          - generic [ref=e52]: Moto
+        - listitem [ref=e53]:
+          - img "Bicicleta" [ref=e54]
+          - generic [ref=e55]: Bicicleta
+        - listitem [ref=e56]:
+          - img "Van/Carro" [ref=e57]
+          - generic [ref=e58]: Van/Carro
+    - paragraph [ref=e60]:
+      - img [ref=e61]
+      - text: Foto da sua CNH
+    - generic [ref=e65]: Adicione uma foto da sua CNH
+    - button "Cadastre-se para fazer entregas" [active] [ref=e64]
