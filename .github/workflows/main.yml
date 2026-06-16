@@ -1,17 +1,11 @@
-name: Test Pipeline com Evidências e Métricas
+name: Run Tests
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
+    branches:
+      - main
+  workflow_dispatch:   # habilita botão "Run workflow"
 
-  workflow_dispatch:
-    inputs:
-      ambiente:
-        description: 'Ambiente para rodar testes'
-        required: true
-        default: 'dev'
-  
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -20,69 +14,12 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
       - name: Instalar dependências
         run: npm install
 
-      # ✅ Executa testes e gera relatório JSON
-      - name: Rodar testes com relatório
-        run: |
-          mkdir -p reports
-          npm test -- --json --outputFile=reports/test-report.json || true
+      - name: Rodar testes
+        run: npm test
 
-      # ✅ Captura logs da execução
-      - name: Coletar logs
-        run: |
-          mkdir -p evidences
-          echo "Pipeline executada em $(date)" > evidences/log.txt
 
-      # ✅ (Opcional) Copiar evidências extras (screenshots, etc.)
-      - name: Copiar evidências
-        run: |
-          if [ -d "screenshots" ]; then
-            cp -r screenshots evidences/
-          fi
 
-      # ✅ Gerar métricas a partir do relatório
-      - name: Gerar métricas
-        run: |
-          node <<EOF
-          const fs = require('fs');
-
-          const reportPath = 'reports/test-report.json'
-          if (!fs.existsSync(reportPath)) {
-            console.log('Relatório não encontrado');
-            process.exit(0);
-          }
-
-          const report = JSON.parse(fs.readFileSync(reportPath));
-
-          const metrics = {
-            totalTests: report.numTotalTests,
-            passed: report.numPassedTests,
-            failed: report.numFailedTests,
-            successRate: report.numTotalTests > 0
-              ? ((report.numPassedTests / report.numTotalTests) * 100).toFixed(2) + '%'
-              : '0%'
-          };
-
-          fs.writeFileSync('reports/metrics.json', JSON.stringify(metrics, null, 2));
-          console.log(metrics);
-          EOF
-
-      # ✅ Upload dos artefatos
-      - name: Upload evidências
-        uses: actions/upload-artifact@v4
-        with:
-          name: evidencias
-          path: evidences/
-
-      - name: Upload relatórios
-        uses: actions/upload-artifact@v4
-        with:
-          name: relatorios
-          path: reports/
+     
