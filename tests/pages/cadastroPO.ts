@@ -20,7 +20,7 @@ export class CadastroPage {
     private readonly inputCNH = '//input[@accept="image/*"]';
     private readonly btnSubmit = '//button[@type="submit"]';
     private readonly mensagemSucesso = '#swal2-html-container';
-    private readonly CNH = 'C:\\QAx\\PlaywrightTest\\Arquivos\\IMG_5573.jpg';
+    private readonly CNH = 'Arquivos/IMG_5573.jpg';
     private readonly mensagemErroNome = '//span[@class="alert-error" and text()="É necessário informar o nome"]';
     private readonly mensagemErroCPF = '//span[@class="alert-error" and text()="É necessário informar o CPF"]';
     private readonly mensagemErroEmail = '//span[@class="alert-error" and text()="É necessário informar o email"]';
